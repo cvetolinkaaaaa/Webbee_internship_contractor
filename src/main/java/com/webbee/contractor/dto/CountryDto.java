@@ -5,13 +5,25 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
+/**
+ * DTO для передачи данных о стране в REST API.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class CountryDto {
 
+    /**
+     * Уникальный идентификатор страны.
+     */
     private String id;
+    /**
+     * Наименование страны.
+     */
     private String name;
+    /**
+     * Признак активности страны.
+     */
     @JsonProperty("is_active")
     private boolean isActive;
 

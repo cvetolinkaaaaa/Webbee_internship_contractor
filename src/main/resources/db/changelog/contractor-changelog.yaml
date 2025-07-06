@@ -172,4 +172,5 @@ databaseChangeLog:
       rollback:
         - dropTable:
             tableName: contractor
-
+  - include:
+      file: db/changelog/contractor-data.yaml

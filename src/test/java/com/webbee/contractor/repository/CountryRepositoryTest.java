@@ -4,12 +4,12 @@ import com.webbee.contractor.model.Country;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import javax.sql.DataSource;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -25,7 +25,7 @@ class CountryRepositoryTest {
 
     CountryRepository countryRepository;
 
-    JdbcTemplate jdbcTemplate;
+    NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @BeforeAll
     void setUp() {
@@ -35,9 +35,9 @@ class CountryRepositoryTest {
                 .password(postgres.getPassword())
                 .driverClassName(postgres.getDriverClassName())
                 .build();
-        jdbcTemplate = new JdbcTemplate(dataSource);
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
 
-        jdbcTemplate.execute("""
+        namedParameterJdbcTemplate.getJdbcTemplate().execute("""
             CREATE TABLE country (
                 id TEXT PRIMARY KEY,
                 name TEXT NOT NULL,
@@ -45,7 +45,7 @@ class CountryRepositoryTest {
             )
         """);
 
-        countryRepository = new CountryRepository(jdbcTemplate);
+        countryRepository = new CountryRepository(namedParameterJdbcTemplate);
     }
 
     @Test

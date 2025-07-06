@@ -4,9 +4,12 @@ import com.webbee.contractor.row_mapper.CountryRowMapper;
 import com.webbee.contractor.model.Country;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Репозиторий для доступа к данным о странах в базе данных через JdbcTemplate.
@@ -14,25 +17,32 @@ import java.util.List;
 @Repository
 public class CountryRepository {
 
-    private final JdbcTemplate jdbcTemplate;
+    private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+    private static final String FIND_ALL = "SELECT * FROM country WHERE is_active = TRUE";
+    private static final String FIND_BY_ID = "SELECT * FROM country WHERE id = :id";
+    private static final String UPDATE = "UPDATE country SET name = :name, is_active = :isActive WHERE id = :id";
+    private static final String INSERT = "INSERT INTO country (id, name, is_active) VALUES (:id, :name, :isActive)";
+    private static final String DELETE = "UPDATE country SET is_active = FALSE WHERE id = :id";
 
     @Autowired
-    public CountryRepository(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public CountryRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
     /**
      * Возвращает список всех активных стран.
      */
     public List<Country> findAll() {
-        return jdbcTemplate.query("SELECT * FROM country WHERE is_active = TRUE", new CountryRowMapper());
+        return namedParameterJdbcTemplate.query(FIND_ALL, new CountryRowMapper());
     }
 
     /**
      * Находит страну по id.
      */
     public Country findById(String id) {
-        return jdbcTemplate.query("SELECT * FROM country WHERE id=?", new Object[]{id}, new CountryRowMapper())
+        Map<String, Object> params = new HashMap<>();
+        params.put("id", id);
+        return namedParameterJdbcTemplate.query(FIND_BY_ID, params, new CountryRowMapper())
                 .stream().findAny().orElse(null);
     }
 
@@ -41,11 +51,17 @@ public class CountryRepository {
      */
     public void save(Country country) {
         if (findById(country.getId()) != null) {
-            jdbcTemplate.update("UPDATE country SET name = ?, is_active = ? WHERE id = ?",
-                    country.getName(), country.getIsActive(), country.getId());
+            Map<String, Object> params = new HashMap<>();
+            params.put("id", country.getId());
+            params.put("name", country.getName());
+            params.put("isActive", country.getIsActive());
+            namedParameterJdbcTemplate.update(UPDATE, params);
         } else {
-            jdbcTemplate.update("INSERT INTO country (id, name, is_active) VALUES (?, ?, ?)",
-                    country.getId(), country.getName(), country.getIsActive());
+            Map<String, Object> params = new HashMap<>();
+            params.put("id", country.getId());
+            params.put("name", country.getName());
+            params.put("isActive", country.getIsActive());
+            namedParameterJdbcTemplate.update(INSERT, params);
         }
     }
 
@@ -53,7 +69,9 @@ public class CountryRepository {
      * Логически удаляет страну (устанавливает is_active = false).
      */
     public void delete(String id) {
-        jdbcTemplate.update("UPDATE country SET is_active = FALSE WHERE id = ?", id);
+        Map<String, Object> params = new HashMap<>();
+        params.put("id", id);
+        namedParameterJdbcTemplate.update(DELETE, params);
     }
 
 }

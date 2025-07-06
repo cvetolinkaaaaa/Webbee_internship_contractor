@@ -2,7 +2,9 @@ package com.webbee.contractor.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * Entity-класс, представляющий страну в базе данных.
@@ -10,6 +12,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Getter
+@Setter
 public class Country {
 
     /**
@@ -31,22 +35,6 @@ public class Country {
 
     public void setIsActive(boolean active) {
         isActive = active;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
 }

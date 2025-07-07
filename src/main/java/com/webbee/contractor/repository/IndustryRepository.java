@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Репозиторий для доступа к данным о странах в базе данных через JdbcTemplate.
+ * Репозиторий для доступа к данным об индустриях в базе данных через JdbcTemplate.
  */
 @Repository
 public class IndustryRepository {

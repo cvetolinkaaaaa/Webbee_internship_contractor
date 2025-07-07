@@ -61,7 +61,7 @@ class IndustryRepositoryTest {
 
     @Test
     @DisplayName("save() обновляет существующую индустрию")
-    void saveCountry() {
+    void saveIndustry() {
         Industry industry = new Industry(1, "Авиастроение", true);
         industryRepository.save(industry);
 

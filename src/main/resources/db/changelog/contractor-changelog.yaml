@@ -174,3 +174,10 @@ databaseChangeLog:
             tableName: contractor
   - include:
       file: db/changelog/contractor-data.yaml
+  - changeSet:
+      id: fix-sequences
+      author: contractor
+      changes:
+        - sql:
+            sql: |
+              SELECT setval('org_form_id_seq', (SELECT MAX(id) FROM org_form));

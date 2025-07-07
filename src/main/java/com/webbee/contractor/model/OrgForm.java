@@ -3,13 +3,21 @@ package com.webbee.contractor.model;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Getter
+@Setter
+@Table("org_form")
 public class OrgForm {
 
-    private int id;
+    @Id
+    private Integer id;
     private String name;
     private boolean isActive;
 
@@ -19,22 +27,6 @@ public class OrgForm {
 
     public void setIsActive(boolean active) {
         isActive = active;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
 }

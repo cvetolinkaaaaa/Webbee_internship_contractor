@@ -3,14 +3,18 @@ package com.webbee.contractor.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Getter
+@Setter
 public class OrgFormDto {
 
-    private int id;
+    private Integer id;
     private String name;
     @JsonProperty("is_active")
     private boolean isActive;
@@ -21,22 +25,6 @@ public class OrgFormDto {
 
     public void setIsActive(boolean active) {
         isActive = active;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
 }

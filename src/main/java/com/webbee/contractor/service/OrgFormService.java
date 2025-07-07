@@ -33,9 +33,10 @@ public class OrgFormService {
         return Objects.isNull(orgForm) ? null : orgFormMapper.orgFormToOrgFormDto(orgForm);
     }
 
-    public void save(OrgFormDto orgFormDto) {
-        orgFormRepository.save(orgFormMapper.orgFormDtoToOrgForm(orgFormDto));
-    }
+    public OrgFormDto save(OrgFormDto orgFormDto) {
+        OrgForm orgForm = orgFormMapper.orgFormDtoToOrgForm(orgFormDto);
+        OrgForm orgFormWithId = orgFormRepository.save(orgForm);
+        return orgFormMapper.orgFormToOrgFormDto(orgFormWithId);    }
 
     public void delete(int id) {
         orgFormRepository.delete(id);

@@ -11,7 +11,7 @@ public class OrgFormRowMapper implements RowMapper<OrgForm> {
     @Override
     public OrgForm mapRow(ResultSet rs, int rowNum) throws SQLException {
         return OrgForm.builder()
-                .id(rs.getInt("id"))
+                .id(rs.getObject("id", Integer.class))
                 .name(rs.getString("name"))
                 .isActive(rs.getBoolean("is_active"))
                 .build();

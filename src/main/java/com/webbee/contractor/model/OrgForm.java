@@ -8,6 +8,9 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
+/**
+ * Entity-класс, представляющий организацию в базе данных.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -16,9 +19,18 @@ import org.springframework.data.relational.core.mapping.Table;
 @Table("org_form")
 public class OrgForm {
 
+    /**
+     * Уникальный идентификатор организации.
+     */
     @Id
     private Integer id;
+    /**
+     * Наименование организации.
+     */
     private String name;
+    /**
+     * Признак активности (true — организация активна, false — удалена логически).
+     */
     private boolean isActive;
 
     public boolean getIsActive() {

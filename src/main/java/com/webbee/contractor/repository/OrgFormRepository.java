@@ -10,6 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Репозиторий для доступа к данным об организациях в базе данных через NamedParameterJdbcTemplate.
+ */
 @Repository
 public class OrgFormRepository {
 
@@ -24,9 +27,15 @@ public class OrgFormRepository {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
+    /**
+     * Возвращает список всех активных организаций.
+     */
     public List<OrgForm> findAll() {
         return namedParameterJdbcTemplate.query(FIND_ALL, new OrgFormRowMapper());    }
 
+    /**
+     * Находит организацию по id.
+     */
     public OrgForm findById(int id) {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
@@ -34,6 +43,9 @@ public class OrgFormRepository {
                 .stream().findAny().orElse(null);
     }
 
+    /**
+     * Создаёт новую или обновляет существующую запись об организации.
+     */
     public OrgForm save(OrgForm orgForm) {
         if (orgForm.getId() == null) {
             Map<String, Object> params = new HashMap<>();
@@ -51,6 +63,9 @@ public class OrgFormRepository {
         return orgForm;
     }
 
+    /**
+     * Логически удаляет организацию (устанавливает is_active = false).
+     */
     public void delete(int id) {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);

@@ -2,15 +2,35 @@ package com.webbee.contractor.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
+/**
+ * Entity-класс, представляющий индустрию в базе данных.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Getter
+@Setter
+@Table("industry")
 public class Industry {
 
-    private int id;
+    /**
+     * Уникальный идентификатор индустрии.
+     */
+    @Id
+    private Integer id;
+    /**
+     * Наименование индустрии.
+     */
     private String name;
+    /**
+     * Признак активности (true — индустрия активна, false — удалена логически).
+     */
     private boolean isActive;
 
     public boolean getIsActive() {
@@ -19,22 +39,6 @@ public class Industry {
 
     public void setIsActive(boolean active) {
         isActive = active;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
 }

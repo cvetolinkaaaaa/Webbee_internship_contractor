@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Сервис для бизнес-логики работы со индустриями.
+ */
 @Service
 public class IndustryService {
 
@@ -22,21 +25,35 @@ public class IndustryService {
         this.industryMapper = industryMapper;
     }
 
+    /**
+     * Возвращает список всех индустрий.
+     */
     public List<IndustryDto> getAll() {
         return industryRepository.findAll().stream()
                 .map(industryMapper::industryToIndustryDto)
                 .toList();
     }
 
+    /**
+     * Находит индустрию по id и возвращает DTO.
+     */
     public IndustryDto getById(int id) {
         Industry industry = industryRepository.findById(id);
         return Objects.isNull(industry) ? null : industryMapper.industryToIndustryDto(industry);
     }
 
-    public void save(IndustryDto industryDto) {
-        industryRepository.save(industryMapper.industryDtoToIndustry(industryDto));
+    /**
+     * Создаёт новую или обновляет существующую индустрию.
+     */
+    public IndustryDto save(IndustryDto industryDto) {
+        Industry industry = industryMapper.industryDtoToIndustry(industryDto);
+        Industry industryWithId = industryRepository.save(industry);
+        return industryMapper.industryToIndustryDto(industryWithId);
     }
 
+    /**
+     * Логически удаляет индустрию.
+     */
     public void delete(int id) {
         industryRepository.delete(id);
     }

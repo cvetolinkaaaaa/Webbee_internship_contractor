@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
 
-public class CountryServiceTest {
+public class IndustryServiceTest {
 
     @Mock
     IndustryRepository industryRepository;
@@ -25,13 +25,13 @@ public class CountryServiceTest {
     @InjectMocks
     IndustryService industryService;
 
-    CountryServiceTest() {
+    IndustryServiceTest() {
         MockitoAnnotations.openMocks(this);
     }
 
     @Test()
     @DisplayName("getAll() возвращает список всех индустрий")
-    void getAll_returnsCountryDtoList() {
+    void getAll_returnsIndustryDtoList() {
         Industry industry = new Industry(1, "Авиастроение", true);
         IndustryDto industryDto = new IndustryDto(1, "Авиастроение", true);
 
@@ -71,7 +71,7 @@ public class CountryServiceTest {
 
     @Test
     @DisplayName("getById() возвращает индустрию по Id")
-    void getById_returnsCountryDto_whenExists() {
+    void getById_returnsIndustryDto_whenExists() {
         Industry industry = new Industry(1, "Авиастроение", true);
         IndustryDto industryDto = new IndustryDto(1, "Авиастроение", true);
 

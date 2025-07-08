@@ -55,7 +55,7 @@ public class IndustryController {
     @GetMapping("/{id}")
     public ResponseEntity<IndustryDto> getById(@PathVariable int id) {
         IndustryDto industryDto = industryService.getById(id);
-        if (industryDto == null) {
+        if (industryDto != null) {
             return ResponseEntity.ok().body(industryDto);
         } else {
             return ResponseEntity.notFound().build();

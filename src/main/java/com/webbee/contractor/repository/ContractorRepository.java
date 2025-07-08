@@ -1,5 +1,6 @@
 package com.webbee.contractor.repository;
 
+import com.webbee.contractor.dto.ContractorSearchRequest;
 import com.webbee.contractor.model.Contractor;
 import com.webbee.contractor.row_mapper.ContractorRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -99,6 +100,44 @@ public class ContractorRepository {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
         namedParameterJdbcTemplate.update(DELETE, params);
+    }
+
+    public List<Contractor> search(ContractorSearchRequest contractorSearchRequest) {
+        StringBuilder sql = new StringBuilder("""
+                SELECT c.* FROM contractor c
+                LEFT JOIN country cn ON c.country = cn.id
+                LEFT JOIN org_form of ON c.org_form = of.id
+                WHERE c.is_active = TRUE
+                """);
+        Map<String, Object> params = new HashMap<>();
+
+        if (contractorSearchRequest.getContractorId() != null) {
+            sql.append(" AND c.id = :contractorId");
+            params.put("contractorId", contractorSearchRequest.getContractorId());
+        }
+        if (contractorSearchRequest.getParentId() != null) {
+            sql.append(" AND c.parent_id = :parentId");
+            params.put("parentId", contractorSearchRequest.getParentId());
+        }
+        if (contractorSearchRequest.getContractorSearch() != null && !contractorSearchRequest.getContractorSearch().isBlank()) {
+            sql.append(" AND (LOWER(c.name) LIKE :search OR LOWER(c.name_full) LIKE :search OR LOWER(c.inn) LIKE :search OR LOWER(c.ogrn) LIKE :search)");            params.put("search", "%" + contractorSearchRequest.getContractorSearch().toLowerCase() + "%");
+        }
+        if (contractorSearchRequest.getIndustry() != null) {
+            sql.append(" AND c.industry = :industry");
+            params.put("industry", contractorSearchRequest.getIndustry());
+        }
+        if (contractorSearchRequest.getOrgForm() != null && contractorSearchRequest.getOrgForm().isBlank()) {
+            sql.append(" AND LOWER(of.name) LIKE :orgForm");
+            params.put("orgForm", "%" + contractorSearchRequest.getOrgForm().toLowerCase() + "%");
+        }
+
+        int page = contractorSearchRequest.getPage() != null ? contractorSearchRequest.getPage() : 0;
+        int size = contractorSearchRequest.getSize() != null ? contractorSearchRequest.getSize() : 20;
+        sql.append(" ORDER BY c.id LIMIT :limit OFFSET :offset");
+        params.put("limit", size);
+        params.put("offset", page * size);
+
+        return namedParameterJdbcTemplate.query(sql.toString(), params, new ContractorRowMapper());
     }
 
 }

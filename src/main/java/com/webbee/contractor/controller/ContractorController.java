@@ -1,6 +1,7 @@
 package com.webbee.contractor.controller;
 
 import com.webbee.contractor.dto.ContractorDto;
+import com.webbee.contractor.dto.ContractorSearchRequest;
 import com.webbee.contractor.service.ContractorService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,5 +44,11 @@ public class ContractorController {
     public ResponseEntity<?> delete(@PathVariable String id) {
         contractorService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+    @PostMapping("/search")
+    public ResponseEntity<List<ContractorDto>> search(@RequestBody ContractorSearchRequest contractorSearchRequest){
+        List<ContractorDto> results = contractorService.search(contractorSearchRequest);
+        return ResponseEntity.ok(results);
     }
 }

@@ -1,6 +1,7 @@
 package com.webbee.contractor.service;
 
 import com.webbee.contractor.dto.ContractorDto;
+import com.webbee.contractor.dto.ContractorSearchRequest;
 import com.webbee.contractor.mapper.ContractorMapper;
 import com.webbee.contractor.model.Contractor;
 import com.webbee.contractor.repository.ContractorRepository;
@@ -39,6 +40,13 @@ public class ContractorService {
 
     public void delete(String id) {
         contractorRepository.delete(id);
+    }
+
+    public List<ContractorDto> search(ContractorSearchRequest contractorSearchRequest) {
+        List<Contractor> found = contractorRepository.search(contractorSearchRequest);
+        return found.stream()
+                .map(contractorMapper::contractorToContractorDto)
+                .toList();
     }
 
 }

@@ -10,6 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Репозиторий для доступа к данным о контрагентах через NamedParameterJdbcTemplate.
+ */
 @Repository
 public class ContractorRepository {
 
@@ -47,10 +50,16 @@ public class ContractorRepository {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
+    /**
+     * Возвращает список всех активных контрагентов.
+     */
     public List<Contractor> findAll() {
         return namedParameterJdbcTemplate.query(FIND_ALL, new ContractorRowMapper());
     }
 
+    /**
+     * Находит контрагента по Id.
+     */
     public Contractor findById(String id) {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
@@ -58,6 +67,9 @@ public class ContractorRepository {
         return list.stream().findAny().orElse(null);
     }
 
+    /**
+     * Сохраняет нового или обновляет существующего контрагента.
+     */
     public void save(Contractor contractor) {
         if (findById(contractor.getId()) != null) {
             Map<String, Object> params = new HashMap<>();
@@ -96,12 +108,18 @@ public class ContractorRepository {
         }
     }
 
+    /**
+     * Логически удаляет контрагента (is_active = false).
+     */
     public void delete(String id) {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
         namedParameterJdbcTemplate.update(DELETE, params);
     }
 
+    /**
+     * Выполняет поиск контрагентов по фильтрам с пагинацией.
+     */
     public List<Contractor> search(ContractorSearchRequest contractorSearchRequest) {
         StringBuilder sql = new StringBuilder("""
                 SELECT c.* FROM contractor c

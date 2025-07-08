@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
+/**
+ * REST-контроллер для управления контрагентами.
+ */
 @RestController
 @RequestMapping("/contractor")
 public class ContractorController {
@@ -26,11 +29,17 @@ public class ContractorController {
         this.contractorService = contractorService;
     }
 
+    /**
+     * Получает список всех активных контрагентов.
+     */
     @GetMapping("/all")
     public ResponseEntity<List<ContractorDto>> getAll() {
         return ResponseEntity.ok(contractorService.getAll());
     }
 
+    /**
+     * Получает контрагента по id.
+     */
     @GetMapping("/{id}")
     public ResponseEntity<ContractorDto> getById(@PathVariable String id) {
         ContractorDto contractorDto = contractorService.getById(id);
@@ -40,18 +49,27 @@ public class ContractorController {
         return ResponseEntity.ok().body(contractorDto);
     }
 
+    /**
+     * Создаёт или обновляет контрагента.
+     */
     @PutMapping("/save")
     public ResponseEntity<?> save(@RequestBody ContractorDto contractorDto) {
         contractorService.save(contractorDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    /**
+     * Логически удаляет контрагента по id.
+     */
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable String id) {
         contractorService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
+    /**
+     * Выполняет поиск контрагентов по фильтрам с пагинацией.
+     */
     @PostMapping("/search")
     public ResponseEntity<List<ContractorDto>> search(@RequestBody ContractorSearchRequest contractorSearchRequest){
         List<ContractorDto> results = contractorService.search(contractorSearchRequest);

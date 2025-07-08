@@ -1,0 +1,253 @@
+﻿id;name;is_active
+ABH;Абхазия;TRUE
+ABW;Аруба;TRUE
+AFG;Афганистан;TRUE
+AGO;Ангола;TRUE
+AIA;Ангилья;TRUE
+ALA;Эландские Острова;TRUE
+ALB;Албания;TRUE
+AND;Андорра;TRUE
+ANT;Антильские острова (Нидерландские Антилы);TRUE
+ARE;Объединенные Арабские Эмираты;TRUE
+ARG;Аргентина;TRUE
+ARM;Армения;TRUE
+ASM;Американское Самоа;TRUE
+ATA;Антарктида;TRUE
+ATF;Французские Южные Территории;TRUE
+ATG;Антигуа и Барбуда;TRUE
+AUS;Австралия;TRUE
+AUT;Австрия;TRUE
+AZE;Азербайджан;TRUE
+BDI;Бурунди;TRUE
+BEL;Бельгия;TRUE
+BEN;Бенин;TRUE
+BES;Бонэйр, Синт-Эстатиус и Саба;TRUE
+BFA;Буркина-Фасо;TRUE
+BGD;Бангладеш;TRUE
+BGR;Болгария;TRUE
+BHR;Бахрейн;TRUE
+BHS;Багамы;TRUE
+BIH;Босния и Герцеговина;TRUE
+BLM;Сен-Бартелеми;TRUE
+BLR;Беларусь;TRUE
+BLZ;Белиз;TRUE
+BMU;Бермуды;TRUE
+BOL;Боливия, Многонациональное Государство;TRUE
+BRA;Бразилия;TRUE
+BRB;Барбадос;TRUE
+BRN;Бруней-Даруссалам;TRUE
+BTN;Бутан;TRUE
+BVT;Остров Буве;TRUE
+BWA;Ботсвана;TRUE
+CAF;Центрально-Африканская Республика;TRUE
+CAN;Канада;TRUE
+CCK;Кокосовые (Килинг) Острова;TRUE
+CHE;Швейцария;TRUE
+CHL;Чили;TRUE
+CHN;Китай;TRUE
+CMR;Камерун;TRUE
+COD;Конго, Демократическая Республика;TRUE
+COG;Конго;TRUE
+COK;Острова Кука;TRUE
+COL;Колумбия;TRUE
+CPV;Кабо-Верде;TRUE
+CRI;Коста-Рика;TRUE
+CUB;Куба;TRUE
+CUW;Кюрасао;TRUE
+CXR;Остров Рождества;TRUE
+CYM;Острова Кайман;TRUE
+CYP;Кипр;TRUE
+CZE;Чешская Республика;TRUE
+DEU;Германия;TRUE
+DJI;Джибути;TRUE
+DMA;Доминика;TRUE
+DNK;Дания;TRUE
+DOM;Доминиканская Республика;TRUE
+DZA;Алжир;TRUE
+ECU;Эквадор;TRUE
+EGY;Египет;TRUE
+ERI;Эритрея;TRUE
+ESH;Западная Сахара;TRUE
+ESP;Испания;TRUE
+EST;Эстония;TRUE
+ETH;Эфиопия;TRUE
+FIN;Финляндия;TRUE
+FJI;Фиджи;TRUE
+FLK;Фолклендские Острова (Мальвинские);TRUE
+FRA;Франция;TRUE
+FRO;Фарерские Острова;TRUE
+FSM;Микронезия, Федеративные Штаты;TRUE
+GAB;Габон;TRUE
+GBR;Соединенное Королевство;TRUE
+GEO;Грузия;TRUE
+GGY;Гернси;TRUE
+GHA;Гана;TRUE
+GIB;Гибралтар;TRUE
+GIN;Гвинея;TRUE
+GLP;Гваделупа;TRUE
+GMB;Гамбия;TRUE
+GNB;Гвинея-Бисау;TRUE
+GNQ;Экваториальная Гвинея;TRUE
+GRC;Греция;TRUE
+GRD;Гренада;TRUE
+GRL;Гренландия;TRUE
+GTM;Гватемала;TRUE
+GUF;Французская Гвиана;TRUE
+GUM;Гуам;TRUE
+GUY;Гайана;TRUE
+HKG;Гонконг;TRUE
+HMD;Остров Херд и Острова Макдональд;TRUE
+HND;Гондурас;TRUE
+HRV;Хорватия;TRUE
+HTI;Гаити;TRUE
+HUN;Венгрия;TRUE
+IDN;Индонезия;TRUE
+IMN;Остров Мэн;TRUE
+IND;Индия;TRUE
+IOT;Британская Территория в Индийском Океане;TRUE
+IRL;Ирландия;TRUE
+IRN;Иран, Исламская Республика;TRUE
+IRQ;Ирак;TRUE
+ISL;Исландия;TRUE
+ISR;Израиль;TRUE
+ITA;Италия;TRUE
+JAM;Ямайка;TRUE
+JEY;Джерси;TRUE
+JOR;Иордания;TRUE
+JPN;Япония;TRUE
+KAZ;Казахстан;TRUE
+KEN;Кения;TRUE
+KGZ;Киргизия;TRUE
+KHM;Камбоджа;TRUE
+KIR;Кирибати;TRUE
+KNA;Сент-Китс и Невис;TRUE
+KOR;Корея, Республика;TRUE
+KWT;Кувейт;TRUE
+LAO;Лаосская Народно-Демократическая Республика;TRUE
+LBN;Ливан;TRUE
+LBR;Либерия;TRUE
+LBY;Ливия;TRUE
+LCA;Сент-Люсия;TRUE
+LIE;Лихтенштейн;TRUE
+LKA;Шри-Ланка;TRUE
+LSO;Лесото;TRUE
+LTU;Литва;TRUE
+LUX;Люксембург;TRUE
+LVA;Латвия;TRUE
+MAC;Макао;TRUE
+MAF;Сен-Мартен;TRUE
+MAR;Марокко;TRUE
+MCO;Монако;TRUE
+MDA;Молдова, Республика;TRUE
+MDG;Мадагаскар;TRUE
+MDV;Мальдивы;TRUE
+MEX;Мексика;TRUE
+MHL;Маршалловы Острова;TRUE
+MKD;Республика Македония;TRUE
+MLI;Мали;TRUE
+MLT;Мальта;TRUE
+MMR;Мьянма;TRUE
+MNE;Черногория;TRUE
+MNG;Монголия;TRUE
+MNP;Северные Марианские Острова;TRUE
+MOZ;Мозамбик;TRUE
+MRT;Мавритания;TRUE
+MSR;Монтсеррат;TRUE
+MTQ;Мартиника;TRUE
+MUS;Маврикий;TRUE
+MWI;Малави;TRUE
+MYS;Малайзия;TRUE
+MYT;Майотта;TRUE
+NAM;Намибия;TRUE
+NCL;Новая Каледония;TRUE
+NER;Нигер;TRUE
+NFK;Остров Норфолк;TRUE
+NGA;Нигерия;TRUE
+NIC;Никарагуа;TRUE
+NIU;Ниуэ;TRUE
+NLD;Нидерланды;TRUE
+NOR;Норвегия;TRUE
+NPL;Непал;TRUE
+NRU;Науру;TRUE
+NZL;Новая Зеландия;TRUE
+OMN;Оман;TRUE
+OST;Южная Осетия;TRUE
+PAK;Пакистан;TRUE
+PAN;Панама;TRUE
+PCN;Питкэрн;TRUE
+PER;Перу;TRUE
+PHL;Филиппины;TRUE
+PLW;Палау;TRUE
+PNG;Папуа Новая Гвинея;TRUE
+POL;Польша;TRUE
+PRI;Пуэрто-Рико;TRUE
+PRK;Корея, Народно-Демократическая Республика;TRUE
+PRT;Португалия;TRUE
+PRY;Парагвай;TRUE
+PSE;Палестина, Государство;TRUE
+PYF;Французская Полинезия;TRUE
+QAT;Катар;TRUE
+REU;Реюньон;TRUE
+ROU;Румыния;TRUE
+RUS;Российская Федерация;TRUE
+RWA;Руанда;TRUE
+SAU;Саудовская Аравия;TRUE
+SDN;Судан;TRUE
+SEN;Сенегал;TRUE
+SGP;Сингапур;TRUE
+SGS;Южная Джорджия и Южные Сандвичевы Острова;TRUE
+SHN;Святая Елена, Остров Вознесения, Тристан-Да-Кунья;TRUE
+SJM;Шпицберген и Ян Майен;TRUE
+SLB;Соломоновы Острова;TRUE
+SLE;Сьерра-Леоне;TRUE
+SLV;Эль-Сальвадор;TRUE
+SMR;Сан-Марино;TRUE
+SOM;Сомали;TRUE
+SPM;Сент-Пьер и Микелон;TRUE
+SRB;Сербия;TRUE
+SSD;Южный Судан;TRUE
+STP;Сан-Томе и Принсипи;TRUE
+SUR;Суринам;TRUE
+SVK;Словакия;TRUE
+SVN;Словения;TRUE
+SWE;Швеция;TRUE
+SWZ;Свазиленд;TRUE
+SXM;Синт-Мартен (Нидерландская Часть);TRUE
+SYC;Сейшелы;TRUE
+SYR;Сирийская Арабская Республика;TRUE
+TCA;Острова Теркс и Кайкос;TRUE
+TCD;Чад;TRUE
+TGO;Того;TRUE
+THA;Таиланд;TRUE
+TJK;Таджикистан;TRUE
+TKL;Токелау;TRUE
+TKM;Туркмения;TRUE
+TLS;Тимор-Лесте;TRUE
+TON;Тонга;TRUE
+TTO;Тринидад и Тобаго;TRUE
+TUN;Тунис;TRUE
+TUR;Турция;TRUE
+TUV;Тувалу;TRUE
+TWN;Тайвань (Китай);TRUE
+TZA;Танзания, Объединенная Республика;TRUE
+UGA;Уганда;TRUE
+UKR;Украина;TRUE
+UMI;Малые Тихоокеанские Отдаленные Острова Соединенных Штатов / Внешние Малые Острова Сша;TRUE
+URY;Уругвай;TRUE
+USA;Соединенные Штаты;TRUE
+UZB;Узбекистан;TRUE
+VAT;Папский Престол (Государство - Город Ватикан);TRUE
+VCT;Сент-Винсент и Гренадины;TRUE
+VEN;Венесуэла Боливарианская Республика;TRUE
+VGB;Виргинские Острова, Британские;TRUE
+VIR;Виргинские Острова, Сша;TRUE
+VNM;Вьетнам;TRUE
+VUT;Вануату;TRUE
+WLF;Уоллис и Футуна;TRUE
+WSM;Самоа;TRUE
+WWW;Международная компания;TRUE
+YEM;Йемен;TRUE
+YUG;Югославия;TRUE
+ZAF;Южная Африка;TRUE
+ZMB;Замбия;TRUE
+ZWE;Зимбабве;TRUE

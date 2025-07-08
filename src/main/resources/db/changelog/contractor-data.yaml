@@ -7,3 +7,10 @@ databaseChangeLog:
             file: db/changelog/industry.csv
             tableName: industry
             separator: ";"
+      id: country-insert
+      author: contractor
+      changes:
+        - loadData:
+            file: db/changelog/country.csv
+            tableName: country
+            separator: ";"

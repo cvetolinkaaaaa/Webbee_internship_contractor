@@ -55,7 +55,7 @@ public class OrgFormController {
     @GetMapping("/{id}")
     public ResponseEntity<OrgFormDto> getById(@PathVariable int id) {
         OrgFormDto orgFormDto = orgFormService.getById(id);
-        if (orgFormDto == null) {
+        if (orgFormDto != null) {
             return ResponseEntity.ok().body(orgFormDto);
         } else {
             return ResponseEntity.notFound().build();

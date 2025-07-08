@@ -68,6 +68,9 @@ public class ContractorRepository {
             params.put("country", contractor.getCountry());
             params.put("industry", contractor.getIndustry());
             params.put("orgForm", contractor.getOrgForm());
+            params.put("createDate", contractor.getCreateDate());
+            params.put("modifyDate", contractor.getModifyDate());
+            params.put("createUserId", contractor.getCreateUserId());
             params.put("modifyUserId", contractor.getModifyUserId());
             params.put("isActive", contractor.getIsActive());
             params.put("id", contractor.getId());
@@ -82,6 +85,9 @@ public class ContractorRepository {
             params.put("country", contractor.getCountry());
             params.put("industry", contractor.getIndustry());
             params.put("orgForm", contractor.getOrgForm());
+            params.put("createDate", contractor.getCreateDate());
+            params.put("modifyDate", contractor.getModifyDate());
+            params.put("createUserId", contractor.getCreateUserId());
             params.put("modifyUserId", contractor.getModifyUserId());
             params.put("isActive", contractor.getIsActive());
             params.put("id", contractor.getId());

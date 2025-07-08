@@ -55,7 +55,7 @@ public class CountryController {
     @GetMapping("/{id}")
     public ResponseEntity<CountryDto> getById(@PathVariable String id) {
         CountryDto countryDto = countryService.getById(id);
-        if (countryDto == null) {
+        if (countryDto != null) {
             return ResponseEntity.ok(countryDto);
         } else {
             return ResponseEntity.notFound().build();

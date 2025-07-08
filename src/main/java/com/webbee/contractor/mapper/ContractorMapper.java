@@ -8,6 +8,7 @@ import org.mapstruct.Mapper;
 public interface ContractorMapper {
 
     ContractorDto contractorToContractorDto(Contractor contractor);
+
     Contractor contractorDtoToContractor(ContractorDto contractorDto);
 
 }

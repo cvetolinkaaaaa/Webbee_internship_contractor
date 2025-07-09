@@ -23,3 +23,19 @@ databaseChangeLog:
             file: db/changelog/country.csv
             tableName: country
             separator: ";"
+  - changeSet:
+      id: org_form-insert
+      author: contractor
+      changes:
+        - loadData:
+            file: db/changelog/org_form.csv
+            tableName: org_form
+            separator: ";"
+  - changeSet:
+      id: industry-insert
+      author: contractor
+      changes:
+        - loadData:
+            file: db/changelog/industry.csv
+            tableName: industry
+            separator: ";"

@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
  *  * - country (страна)
  *  * - industry (id индустрии)
  *  * - orgForm (id организационной формы)
- *  * - isActive (флаг активности)
  *  * - parentId (фильтр по родителю)
  *  * - page, size (параметры пагинации)
  */
@@ -55,5 +54,7 @@ public class ContractorSearchRequest {
     /** Размер страницы. */
     @Schema(description = "Размер страницы", example = "10", defaultValue = "10")
     private Integer size;
+
+
 
 }

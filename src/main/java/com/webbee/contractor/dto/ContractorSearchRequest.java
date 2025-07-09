@@ -46,7 +46,7 @@ public class ContractorSearchRequest {
     @Schema(description = "Id индустрии", example = "1")
     private Integer industry;
     /** Фильтр по организации(необязательно). */
-    @Schema(description = "Id организационной формы", example = "2")
+    @Schema(description = "Название организационной формы", example = "2")
     private String orgForm;
     /** Номер страницы. */
     @Schema(description = "Номер страницы", example = "1", defaultValue = "0")

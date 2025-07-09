@@ -138,7 +138,8 @@ public class ContractorRepository {
             params.put("parentId", contractorSearchRequest.getParentId());
         }
         if (contractorSearchRequest.getContractorSearch() != null && !contractorSearchRequest.getContractorSearch().isBlank()) {
-            sql.append(" AND (LOWER(c.name) LIKE :search OR LOWER(c.name_full) LIKE :search OR LOWER(c.inn) LIKE :search OR LOWER(c.ogrn) LIKE :search)");            params.put("search", "%" + contractorSearchRequest.getContractorSearch().toLowerCase() + "%");
+            sql.append(" AND (LOWER(c.name) LIKE :search OR LOWER(c.name_full) LIKE :search OR LOWER(c.inn) LIKE :search OR LOWER(c.ogrn) LIKE :search)");
+            params.put("search", "%" + contractorSearchRequest.getContractorSearch().toLowerCase() + "%");
         }
         if (contractorSearchRequest.getIndustry() != null) {
             sql.append(" AND c.industry = :industry");

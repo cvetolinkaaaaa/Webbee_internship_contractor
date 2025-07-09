@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: contractor-postgres
+    environment:
+      POSTGRES_DB: contractor
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  contractor-app:
+    build: .
+    container_name: contractor-app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/contractor
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    restart: unless-stopped

@@ -40,4 +40,8 @@ public class IndustryDto {
         return isActive;
     }
 
+    public void setIsActive(boolean active) {
+        isActive = active;
+    }
+
 }

@@ -35,4 +35,12 @@ public class CountryDto {
     @JsonProperty("is_active")
     private boolean isActive;
 
+    public boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(boolean active) {
+        isActive = active;
+    }
+
 }

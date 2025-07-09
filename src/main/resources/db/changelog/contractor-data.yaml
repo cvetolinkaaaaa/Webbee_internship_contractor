@@ -1,5 +1,13 @@
 databaseChangeLog:
   - changeSet:
+      id: industry-insert
+      author: contractor
+      changes:
+        - loadData:
+            file: db/changelog/industry.csv
+            tableName: industry
+            separator: ";"
+  - changeSet:
       id: country-insert
       author: contractor
       changes:
@@ -14,12 +22,4 @@ databaseChangeLog:
         - loadData:
             file: db/changelog/org_form.csv
             tableName: org_form
-            separator: ";"
-  - changeSet:
-      id: industry-insert
-      author: contractor
-      changes:
-        - loadData:
-            file: db/changelog/industry.csv
-            tableName: industry
             separator: ";"

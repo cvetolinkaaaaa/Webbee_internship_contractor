@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -51,13 +52,14 @@ class ContractorServiceTest {
         ContractorDto contractorDto = new ContractorDto();
         contractorDto.setId("321");
 
-        when(contractorRepository.findById("321")).thenReturn(contractor);
+        when(contractorRepository.findById("321")).thenReturn(Optional.of(contractor));
         when(contractorMapper.contractorToContractorDto(contractor)).thenReturn(contractorDto);
 
         ContractorDto contractorDtoResult = contractorService.getById("321");
         assertNotNull(contractorDtoResult);
         assertEquals("321", contractorDtoResult.getId());
     }
+
 
     @Test
     @DisplayName("save() сохраняет контрагента")

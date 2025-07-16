@@ -65,7 +65,7 @@ public class ContractorController {
     @Operation(summary = "Сохранить контрагента", description = "Сохраняет контрагента или изменяет существующего")
     @ApiResponse(responseCode = "201", description = "Контрагент успешно создан/обновлен")
     @PutMapping("/save")
-    public ResponseEntity<?> save(@RequestBody ContractorDto contractorDto) {
+    public ResponseEntity save(@RequestBody ContractorDto contractorDto) {
         contractorService.save(contractorDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -76,7 +76,7 @@ public class ContractorController {
     @Operation(summary = "Удалить контрагента", description = "Производит логическое удаление контрагента")
     @ApiResponse(responseCode = "204", description = "Контрагент удален (is_active=false)")
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> delete(@PathVariable String id) {
+    public ResponseEntity delete(@PathVariable String id) {
         contractorService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

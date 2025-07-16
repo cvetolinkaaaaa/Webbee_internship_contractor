@@ -10,6 +10,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 import javax.sql.DataSource;
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -68,11 +69,13 @@ class ContractorRepositoryTest {
         contractor.setCreateDate(LocalDateTime.now());
         contractorRepository.save(contractor);
 
-        Contractor fromDb = contractorRepository.findById("QWERTY");
-        assertNotNull(fromDb);
+        Optional<Contractor> fromDbOpt = contractorRepository.findById("QWERTY");
+        assertTrue(fromDbOpt.isPresent());
+        Contractor fromDb = fromDbOpt.get();
         assertEquals("ООО Тест", fromDb.getName());
         assertTrue(fromDb.getIsActive());
     }
+
 
     @Test
     @DisplayName("save() обновляет контрагента")
@@ -86,7 +89,9 @@ class ContractorRepositoryTest {
         contractor.setName("New SaveTest");
         contractorRepository.save(contractor);
 
-        Contractor contractorUpdated = contractorRepository.findById("ASDFG");
+        Optional<Contractor> contractorUpdatedOpt = contractorRepository.findById("ASDFG");
+        assertTrue(contractorUpdatedOpt.isPresent());
+        Contractor contractorUpdated = contractorUpdatedOpt.get();
         assertEquals("New SaveTest", contractorUpdated.getName());
     }
 
@@ -100,8 +105,9 @@ class ContractorRepositoryTest {
         contractorRepository.save(contractor);
 
         contractorRepository.delete("ZXCVB");
-        Contractor contractorDeleted = contractorRepository.findById("ZXCVB");
-        assertNotNull(contractorDeleted);
+        Optional<Contractor> contractorDeletedOpt = contractorRepository.findById("ZXCVB");
+        assertTrue(contractorDeletedOpt.isPresent());
+        Contractor contractorDeleted = contractorDeletedOpt.get();
         assertFalse(contractorDeleted.getIsActive());
     }
 

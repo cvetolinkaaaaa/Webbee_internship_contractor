@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Репозиторий для доступа к данным о контрагентах через NamedParameterJdbcTemplate.
@@ -60,11 +61,11 @@ public class ContractorRepository {
     /**
      * Находит контрагента по Id.
      */
-    public Contractor findById(String id) {
+    public Optional<Contractor> findById(String id) {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
         List<Contractor> list = namedParameterJdbcTemplate.query(FIND_BY_ID, params, new ContractorRowMapper());
-        return list.stream().findAny().orElse(null);
+        return list.stream().findAny();
     }
 
     /**
@@ -137,7 +138,7 @@ public class ContractorRepository {
             sql.append(" AND c.parent_id = :parentId");
             params.put("parentId", contractorSearchRequest.getParentId());
         }
-        if (contractorSearchRequest.getContractorSearch() != null && !contractorSearchRequest.getContractorSearch().isBlank()) {
+        if (!contractorSearchRequest.getContractorSearch().isBlank()) {
             sql.append(" AND (LOWER(c.name) LIKE :search OR LOWER(c.name_full) LIKE :search OR LOWER(c.inn) LIKE :search OR LOWER(c.ogrn) LIKE :search)");
             params.put("search", "%" + contractorSearchRequest.getContractorSearch().toLowerCase() + "%");
         }
@@ -145,7 +146,7 @@ public class ContractorRepository {
             sql.append(" AND c.industry = :industry");
             params.put("industry", contractorSearchRequest.getIndustry());
         }
-        if (contractorSearchRequest.getOrgForm() != null && contractorSearchRequest.getOrgForm().isBlank()) {
+        if (contractorSearchRequest.getOrgForm().isBlank()) {
             sql.append(" AND LOWER(of.name) LIKE :orgForm");
             params.put("orgForm", "%" + contractorSearchRequest.getOrgForm().toLowerCase() + "%");
         }

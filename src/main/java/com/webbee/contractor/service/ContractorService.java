@@ -28,8 +28,9 @@ public class ContractorService {
     }
 
     public ContractorDto getById(String id) {
-        Contractor contractor = contractorRepository.findById(id);
-        return Objects.isNull(contractor) ? null : contractorMapper.contractorToContractorDto(contractor);
+        return contractorRepository.findById(id)
+                .map(contractorMapper::contractorToContractorDto)
+                .orElse(null);
     }
 
     public void save(ContractorDto contractorDto) {

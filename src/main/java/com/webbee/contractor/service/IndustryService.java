@@ -4,7 +4,7 @@ import com.webbee.contractor.dto.IndustryDto;
 import com.webbee.contractor.mapper.IndustryMapper;
 import com.webbee.contractor.model.Industry;
 import com.webbee.contractor.repository.IndustryRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,16 +14,11 @@ import java.util.Objects;
  * Сервис для бизнес-логики работы со индустриями.
  */
 @Service
+@RequiredArgsConstructor
 public class IndustryService {
 
     private final IndustryRepository industryRepository;
     private final IndustryMapper industryMapper;
-
-    @Autowired
-    public IndustryService(IndustryRepository industryRepository, IndustryMapper industryMapper) {
-        this.industryRepository = industryRepository;
-        this.industryMapper = industryMapper;
-    }
 
     /**
      * Возвращает список всех индустрий.
@@ -35,7 +30,7 @@ public class IndustryService {
     }
 
     /**
-     * Находит индустрию по id и возвращает DTO.
+     * Находит индустрию по id.
      */
     public IndustryDto getById(int id) {
         Industry industry = industryRepository.findById(id);

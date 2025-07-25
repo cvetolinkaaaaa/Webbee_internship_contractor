@@ -6,6 +6,7 @@ import com.webbee.contractor.row_mapper.ContractorRowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import java.util.Optional;
 
 /**
  * Репозиторий для доступа к данным о контрагентах через NamedParameterJdbcTemplate.
+ * @author Evseeva Tsvetolina
  */
 @Repository
 public class ContractorRepository {
@@ -72,7 +74,7 @@ public class ContractorRepository {
      * Сохраняет нового или обновляет существующего контрагента.
      */
     public void save(Contractor contractor) {
-        if (findById(contractor.getId()) != null) {
+        if (!findById(contractor.getId()).isEmpty()) {
             Map<String, Object> params = new HashMap<>();
             params.put("parentId", contractor.getParentId());
             params.put("name", contractor.getName());
@@ -83,7 +85,7 @@ public class ContractorRepository {
             params.put("industry", contractor.getIndustry());
             params.put("orgForm", contractor.getOrgForm());
             params.put("createDate", contractor.getCreateDate());
-            params.put("modifyDate", contractor.getModifyDate());
+            params.put("modifyDate", LocalDateTime.now());
             params.put("createUserId", contractor.getCreateUserId());
             params.put("modifyUserId", contractor.getModifyUserId());
             params.put("isActive", contractor.getIsActive());
@@ -99,8 +101,8 @@ public class ContractorRepository {
             params.put("country", contractor.getCountry());
             params.put("industry", contractor.getIndustry());
             params.put("orgForm", contractor.getOrgForm());
-            params.put("createDate", contractor.getCreateDate());
-            params.put("modifyDate", contractor.getModifyDate());
+            params.put("createDate", LocalDateTime.now());
+            params.put("modifyDate", LocalDateTime.now());
             params.put("createUserId", contractor.getCreateUserId());
             params.put("modifyUserId", contractor.getModifyUserId());
             params.put("isActive", contractor.getIsActive());

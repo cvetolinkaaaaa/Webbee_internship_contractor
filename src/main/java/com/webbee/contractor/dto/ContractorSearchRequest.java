@@ -9,13 +9,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * Объект запроса для поиска контрагентов с фильтрами и параметрами пагинации.
- *  * Используется для поиска по нескольким полям:
- *  * - contractorSearch (общий текстовый фильтр)
- *  * - country (страна)
- *  * - industry (id индустрии)
- *  * - orgForm (id организационной формы)
- *  * - parentId (фильтр по родителю)
- *  * - page, size (параметры пагинации)
+ * @author Evseeva Tsvetolina
  */
 @AllArgsConstructor
 @NoArgsConstructor

@@ -10,6 +10,7 @@ import lombok.Getter;
 
 /**
  * DTO для передачи данных о стране в REST API.
+ * @author Evseeva Tsvetolina
  */
 @AllArgsConstructor
 @NoArgsConstructor

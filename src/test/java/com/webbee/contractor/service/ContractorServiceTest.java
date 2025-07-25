@@ -4,6 +4,8 @@ import com.webbee.contractor.dto.ContractorDto;
 import com.webbee.contractor.mapper.ContractorMapper;
 import com.webbee.contractor.model.Contractor;
 import com.webbee.contractor.repository.ContractorRepository;
+import com.webbee.contractor.security.service.AuthorizationService;
+import com.webbee.contractor.utils.UserIdService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,12 +22,14 @@ class ContractorServiceTest {
     ContractorRepository contractorRepository;
     ContractorMapper contractorMapper;
     ContractorService contractorService;
+    AuthorizationService authorizationService;
+    UserIdService currentUserService;
 
     @BeforeEach
     void setUp() {
         contractorRepository = mock(ContractorRepository.class);
         contractorMapper = mock(ContractorMapper.class);
-        contractorService = new ContractorService(contractorRepository, contractorMapper);
+        contractorService = new ContractorService(contractorRepository, contractorMapper,authorizationService,currentUserService);
     }
 
     @Test

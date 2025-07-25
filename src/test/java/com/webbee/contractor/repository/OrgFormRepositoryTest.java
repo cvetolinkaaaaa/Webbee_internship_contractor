@@ -11,7 +11,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import javax.sql.DataSource;
 
 import static org.junit.jupiter.api.Assertions.*;
-@Disabled
+
 @Testcontainers
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class OrgFormRepositoryTest {

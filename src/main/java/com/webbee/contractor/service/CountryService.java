@@ -4,7 +4,7 @@ import com.webbee.contractor.dto.CountryDto;
 import com.webbee.contractor.mapper.CountryMapper;
 import com.webbee.contractor.repository.CountryRepository;
 import com.webbee.contractor.model.Country;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,18 +12,14 @@ import java.util.Objects;
 
 /**
  * Сервис для бизнес-логики работы со странами.
+ * @author Evseeva Tsvetolina
  */
 @Service
+@RequiredArgsConstructor
 public class CountryService {
 
     private final CountryRepository countryRepository;
     private final CountryMapper countryMapper;
-
-    @Autowired
-    public CountryService(CountryRepository countryRepository, CountryMapper countryMapper) {
-        this.countryRepository = countryRepository;
-        this.countryMapper = countryMapper;
-    }
 
     /**
      * Возвращает список всех стран.

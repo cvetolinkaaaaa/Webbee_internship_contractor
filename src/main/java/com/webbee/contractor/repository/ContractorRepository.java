@@ -14,6 +14,7 @@ import java.util.Optional;
 
 /**
  * Репозиторий для доступа к данным о контрагентах через NamedParameterJdbcTemplate.
+ * @author Evseeva Tsvetolina
  */
 @Repository
 public class ContractorRepository {

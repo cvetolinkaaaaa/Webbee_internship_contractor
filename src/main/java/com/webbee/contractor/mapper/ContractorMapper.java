@@ -6,6 +6,7 @@ import org.mapstruct.Mapper;
 
 /**
  * MapStruct-маппер для преобразования между Contractor и ContractorDto.
+ * @author Evseeva Tsvetolina
  */
 @Mapper(componentModel = "spring")
 public interface ContractorMapper {

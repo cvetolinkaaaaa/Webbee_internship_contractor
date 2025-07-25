@@ -5,6 +5,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * Класс для получения токена из заголовка.
+ * @author Evseeva Tsvetolina
  */
 public final class JwtUtils {
 

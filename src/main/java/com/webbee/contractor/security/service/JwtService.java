@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
  * Сервис для работы с JWT (JSON Web Token) в системе аутентификации и авторизации.
  * Предоставляет полный набор функций для работы с JWT токенами, включая генерацию,
  * парсинг, валидацию и извлечение пользовательских данных.
+ * @author Evseeva Tsvetolina
  */
 @Service
 public class JwtService {

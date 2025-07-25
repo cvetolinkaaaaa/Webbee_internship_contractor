@@ -23,6 +23,7 @@ import java.util.List;
 
 /**
  * UI контроллер для управления справочником организационных форм с проверкой ролей.
+ * @author Evseeva Tsvetolina
  */
 @RestController
 @RequestMapping("/ui/org_form")

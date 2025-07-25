@@ -21,6 +21,7 @@ import java.util.List;
 
 /**
  * REST-контроллер для управления справочником организаций.
+ * @author Evseeva Tsvetolina
  */
 @RestController
 @RequestMapping("/org_form")

@@ -19,6 +19,7 @@ import java.util.Optional;
 /**
  * Фильтр для обработки JWT.
  * Этот фильтр перехватывает все HTTP запросы и проверяет наличие JWT токена
+ * @author Evseeva Tsvetolina
  */
 @Component
 @RequiredArgsConstructor

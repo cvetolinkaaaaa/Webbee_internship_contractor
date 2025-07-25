@@ -12,6 +12,7 @@ import java.util.Objects;
 
 /**
  * Сервис для бизнес-логики работы со индустриями.
+ * @author Evseeva Tsvetolina
  */
 @Service
 @RequiredArgsConstructor

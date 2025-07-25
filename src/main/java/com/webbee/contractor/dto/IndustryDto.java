@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 /**
  * DTO для передачи данных об индустрии в REST API.
+ * @author Evseeva Tsvetolina
  */
 @AllArgsConstructor
 @NoArgsConstructor

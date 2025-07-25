@@ -10,6 +10,7 @@ import org.springframework.data.relational.core.mapping.Table;
 
 /**
  * Entity-класс, представляющий индустрию в базе данных.
+ * @author Evseeva Tsvetolina
  */
 @AllArgsConstructor
 @NoArgsConstructor

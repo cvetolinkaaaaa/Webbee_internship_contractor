@@ -10,6 +10,7 @@ import java.util.List;
 
 /**
  * Модель данных, извлеченных из JWT токена.
+ * @author Evseeva Tsvetolina
  */
 @Data
 @Builder

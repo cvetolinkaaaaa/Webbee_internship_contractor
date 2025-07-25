@@ -12,6 +12,7 @@ import java.util.Map;
 
 /**
  * Репозиторий для доступа к данным об организациях в базе данных через NamedParameterJdbcTemplate.
+ * @author Evseeva Tsvetolina
  */
 @Repository
 public class OrgFormRepository {

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * Сервис для получения текущего пользователя из JWT токена.
+ * @author Evseeva Tsvetolina
  */
 @Service
 public class UserIdService {

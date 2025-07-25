@@ -21,6 +21,7 @@ import java.util.List;
 
 /**
  * REST-контроллер для управления справочником индустрий.
+ * @author Evseeva Tsvetolina
  */
 @RestController
 @RequestMapping("/industry")

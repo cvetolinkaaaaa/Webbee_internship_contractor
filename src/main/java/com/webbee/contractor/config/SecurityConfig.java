@@ -19,6 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 /**
  * Конфигурационный класс безопасности Spring Security для аутентификации и авторизации.
  * Конфигурация использует подход с JWT токенами для аутентификации
+ * @author Evseeva Tsvetolina
  */
 @Configuration
 @EnableWebSecurity

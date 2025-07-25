@@ -23,6 +23,7 @@ import java.util.List;
 
 /**
  * UI контроллер для управления справочником стран с проверкой ролей.
+ * @author Evseeva Tsvetolina
  */
 @RestController
 @RequestMapping("/ui/country")

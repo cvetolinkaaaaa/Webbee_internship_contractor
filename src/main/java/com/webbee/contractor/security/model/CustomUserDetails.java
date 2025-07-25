@@ -9,6 +9,7 @@ import java.util.Collection;
 /**
  * Реализация интерфейса UserDetails для Spring Security.
  * Представляет детали аутентифицированного пользователя в контексте Spring Security.
+ * @author Evseeva Tsvetolina
  */
 public class CustomUserDetails implements UserDetails {
 

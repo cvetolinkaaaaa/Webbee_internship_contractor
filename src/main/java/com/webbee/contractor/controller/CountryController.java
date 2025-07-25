@@ -21,6 +21,7 @@ import java.util.List;
 
 /**
  * REST-контроллер для управления справочником стран.
+ * @author Evseeva Tsvetolina
  */
 @RestController
 @RequestMapping("/country")

@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 /**
  * Сервис для проверки прав доступа.
+ * @author Evseeva Tsvetolina
  */
 @Service
 public class AuthorizationService {

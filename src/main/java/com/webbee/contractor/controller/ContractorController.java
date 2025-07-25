@@ -21,6 +21,7 @@ import java.util.List;
 
 /**
  * REST-контроллер для управления контрагентами.
+ * @author Evseeva Tsvetolina
  */
 @RestController
 @RequestMapping("/contractor")

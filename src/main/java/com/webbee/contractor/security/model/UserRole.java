@@ -2,6 +2,7 @@ package com.webbee.contractor.security.model;
 
 /**
  * Перечисление ролей пользователей в системе.
+ * @author Evseeva Tsvetolina
  */
 public enum UserRole {
 

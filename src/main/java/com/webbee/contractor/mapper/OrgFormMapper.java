@@ -6,6 +6,7 @@ import org.mapstruct.Mapper;
 
 /**
  * MapStruct-маппер для преобразования между OrgForm и OrgFormDto.
+ * @author Evseeva Tsvetolina
  */
 @Mapper(componentModel = "spring")
 public interface OrgFormMapper {

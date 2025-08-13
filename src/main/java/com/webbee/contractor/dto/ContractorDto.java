@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 
 /**
  * DTO для передачи данных о контрагенте через REST API.
+ * @author Evseeva Tsvetolina
  */
 @AllArgsConstructor
 @NoArgsConstructor
@@ -56,10 +57,10 @@ public class ContractorDto {
     private LocalDateTime modifyTime;
     /** Id пользователя, создавшего запись. */
     @Schema(description = "Id пользователя, создавшего запись", example = "USER_ID1")
-    private String createUserName;
+    private String createUserId;
     /** ID пользователя, последнего изменившего запись. */
     @Schema(description = "ID пользователя, последнего изменившего запись", example = "USER_ID2")
-    private String modifyUserName;
+    private String modifyUserId;
 
     public Boolean getActive() {
         return isActive;

@@ -8,6 +8,7 @@ import lombok.Setter;
 
 /**
  * Entity-класс, представляющий страну в базе данных.
+ * @author Evseeva Tsvetolina
  */
 @AllArgsConstructor
 @NoArgsConstructor

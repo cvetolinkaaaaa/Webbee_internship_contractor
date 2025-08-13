@@ -6,6 +6,7 @@ import org.mapstruct.Mapper;
 
 /**
  * MapStruct-маппер для преобразования между Country и CountryDto.
+ * @author Evseeva Tsvetolina
  */
 @Mapper(componentModel = "spring")
 public interface CountryMapper {

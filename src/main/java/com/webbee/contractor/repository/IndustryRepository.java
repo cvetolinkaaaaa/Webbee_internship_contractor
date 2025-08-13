@@ -12,6 +12,7 @@ import java.util.Map;
 
 /**
  * Репозиторий для доступа к данным об индустриях в базе данных через JdbcTemplate.
+ * @author Evseeva Tsvetolina
  */
 @Repository
 public class IndustryRepository {

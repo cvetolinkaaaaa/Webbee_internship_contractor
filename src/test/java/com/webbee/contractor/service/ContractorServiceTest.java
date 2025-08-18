@@ -24,13 +24,25 @@ class ContractorServiceTest {
     ContractorService contractorService;
     AuthorizationService authorizationService;
     UserIdService currentUserService;
+    ContractorMessageService contractorMessageService;
 
     @BeforeEach
     void setUp() {
         contractorRepository = mock(ContractorRepository.class);
         contractorMapper = mock(ContractorMapper.class);
-        contractorService = new ContractorService(contractorRepository, contractorMapper,authorizationService,currentUserService);
+        authorizationService = mock(AuthorizationService.class);
+        currentUserService = mock(UserIdService.class);
+        contractorMessageService = mock(ContractorMessageService.class);
+
+        contractorService = new ContractorService(
+                contractorRepository,
+                contractorMapper,
+                authorizationService,
+                currentUserService,
+                contractorMessageService
+        );
     }
+
 
     @Test
     @DisplayName("getAll() возвращает список контрагентов")
@@ -65,17 +77,34 @@ class ContractorServiceTest {
     }
 
 
+
     @Test
     @DisplayName("save() сохраняет контрагента")
     void save() {
         ContractorDto contractorDto = new ContractorDto();
+        contractorDto.setId("test-id");
+
         Contractor contractor = new Contractor();
+        contractor.setId("test-id");
+
+        Contractor savedContractor = new Contractor();
+        savedContractor.setId("test-id");
+        savedContractor.setVersion(1L);
+
+        ContractorDto savedContractorDto = new ContractorDto();
+        savedContractorDto.setId("test-id");
 
         when(contractorMapper.contractorDtoToContractor(contractorDto)).thenReturn(contractor);
+        when(contractorRepository.save(contractor)).thenReturn(savedContractor);
+        when(contractorMapper.contractorToContractorDto(savedContractor)).thenReturn(savedContractorDto);
+
+        when(contractorRepository.findById("test-id")).thenReturn(Optional.empty());
+        when(contractorMapper.contractorToContractorDto(null)).thenReturn(null);
 
         contractorService.save(contractorDto);
 
         verify(contractorRepository).save(contractor);
+        verify(contractorMessageService).sendContractorUpdate(savedContractorDto, true, 1L);
     }
 
     @Test

@@ -1,6 +1,10 @@
 package com.webbee.contractor.config;
 
-import org.springframework.amqp.core.*;
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.QueueBuilder;
+import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
@@ -18,25 +22,18 @@ import java.util.Map;
 @Configuration
 public class RabbitConfig {
 
-    // Exchange и routing keys для контрагентов
     public static final String CONTRACTORS_EXCHANGE = "contractors_contractor_exchange";
     public static final String CONTRACTOR_CREATED_ROUTING_KEY = "contractor.created";
     public static final String CONTRACTOR_UPDATED_ROUTING_KEY = "contractor.updated";
 
-    // Основная очередь для обработки сообщений о контрагентах
     public static final String DEALS_CONTRACTOR_QUEUE = "deals_contractor_queue";
 
-    // Dead letter exchange и queue для общих "мертвых" сообщений
     public static final String DEALS_DEAD_EXCHANGE = "deals_dead_exchange";
     public static final String DEALS_CONTRACTOR_DEAD_QUEUE = "deals_contractor_dead_queue";
 
-    // Retry exchange для повторной обработки после таймаута
     public static final String DEAL_CONTRACTOR_DEAD_EXCHANGE = "deal_contractor_dead_exchange";
 
-    // TTL для повторной попытки (5 минут в миллисекундах)
-    public static final int RETRY_TTL = 5 * 60 * 1000; // 5 минут
-
-    // ============= EXCHANGES =============
+    public static final int RETRY_TTL = 5 * 60 * 1000;
 
     @Bean
     public TopicExchange contractorsExchange() {
@@ -52,8 +49,6 @@ public class RabbitConfig {
     public TopicExchange dealContractorDeadExchange() {
         return new TopicExchange(DEAL_CONTRACTOR_DEAD_EXCHANGE);
     }
-
-    // ============= QUEUES =============
 
     /**
      * Основная очередь для обработки сообщений о контрагентах.
@@ -76,15 +71,13 @@ public class RabbitConfig {
     @Bean
     public Queue dealsContractorDeadQueue() {
         Map<String, Object> args = new HashMap<>();
-        args.put("x-message-ttl", RETRY_TTL); // TTL 5 минут
+        args.put("x-message-ttl", RETRY_TTL);
         args.put("x-dead-letter-exchange", DEAL_CONTRACTOR_DEAD_EXCHANGE);
         args.put("x-dead-letter-routing-key", "contractor.retry");
         return QueueBuilder.durable(DEALS_CONTRACTOR_DEAD_QUEUE)
                 .withArguments(args)
                 .build();
     }
-
-    // ============= BINDINGS =============
 
     /**
      * Привязка основной очереди к exchange контрагентов.
@@ -120,8 +113,6 @@ public class RabbitConfig {
                 .with("contractor.retry");
     }
 
-    // ============= INFRASTRUCTURE BEANS =============
-
     @Bean
     public MessageConverter jsonMessageConverter() {
         return new Jackson2JsonMessageConverter();
@@ -133,4 +124,5 @@ public class RabbitConfig {
         rabbitTemplate.setMessageConverter(messageConverter);
         return rabbitTemplate;
     }
+
 }

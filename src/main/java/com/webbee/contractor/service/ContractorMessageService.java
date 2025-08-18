@@ -1,84 +1,68 @@
 package com.webbee.contractor.service;
 
-import com.webbee.contractor.config.RabbitConfig;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.webbee.contractor.dto.ContractorDto;
+import com.webbee.contractor.dto.ContractorEventDto;
+import com.webbee.contractor.model.OutboxEvent;
+import com.webbee.contractor.repository.OutboxEventRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
 
 /**
- * Сервис для отправки сообщений о контрагентах в RabbitMQ.
- * @author Evseeva Tsvetolina
+ * Сервис для создания событий в Outbox.
  */
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class ContractorMessageService {
 
-    private final RabbitTemplate rabbitTemplate;
+    private final OutboxEventRepository outboxEventRepository;
+    private final ObjectMapper objectMapper;
 
     /**
-     * Отправляет сообщение о создании нового контрагента в RabbitMQ.
-     *
-     * @param contractorDto DTO контрагента для отправки
+     * Создает событие в Outbox вместо прямой отправки сообщения.
      */
-    public void sendContractorCreated(ContractorDto contractorDto) {
+    @Transactional
+    public void sendContractorUpdate(ContractorDto contractorDto, boolean isNewContractor, Long version) {
         try {
-            rabbitTemplate.convertAndSend(
-                RabbitConfig.CONTRACTORS_EXCHANGE, 
-                RabbitConfig.CONTRACTOR_CREATED_ROUTING_KEY, 
-                contractorDto
+            String eventType = isNewContractor ? "CREATED" : "UPDATED";
+
+            ContractorEventDto eventDto = ContractorEventDto.builder()
+                    .contractorId(contractorDto.getId())
+                    .version(version)
+                    .eventType(eventType)
+                    .contractorData(contractorDto)
+                    .eventTime(LocalDateTime.now())
+                    .build();
+
+            String eventData = objectMapper.writeValueAsString(eventDto);
+
+            log.info("Creating outbox event for contractor {}. Event data JSON: {}",
+                    contractorDto.getId(), eventData);
+
+            outboxEventRepository.insertEvent(
+                    UUID.randomUUID().toString(),
+                    contractorDto.getId(),
+                    "CONTRACTOR",
+                    eventType,
+                    version,
+                    eventData,
+                    LocalDateTime.now(),
+                    OutboxEvent.STATUS_PENDING
             );
-            log.info("Сообщение о создании контрагента с ID {} отправлено в RabbitMQ с routing key '{}'", 
-                contractorDto.getId(), RabbitConfig.CONTRACTOR_CREATED_ROUTING_KEY);
+
+            log.info("Outbox event created successfully for contractor {} with version {}",
+                    contractorDto.getId(), version);
+
         } catch (Exception e) {
-            log.error("Ошибка при отправке сообщения о создании контрагента с ID {} в RabbitMQ", 
-                contractorDto.getId(), e);
+            log.error("Failed to create outbox event for contractor {}", contractorDto.getId(), e);
+            throw new RuntimeException("Failed to create outbox event", e);
         }
     }
 
-    /**
-     * Отправляет сообщение об обновлении контрагента в RabbitMQ.
-     *
-     * @param contractorDto DTO контрагента для отправки
-     */
-    public void sendContractorUpdated(ContractorDto contractorDto) {
-        try {
-            rabbitTemplate.convertAndSend(
-                RabbitConfig.CONTRACTORS_EXCHANGE, 
-                RabbitConfig.CONTRACTOR_UPDATED_ROUTING_KEY, 
-                contractorDto
-            );
-            log.info("Сообщение об обновлении контрагента с ID {} отправлено в RabbitMQ с routing key '{}'", 
-                contractorDto.getId(), RabbitConfig.CONTRACTOR_UPDATED_ROUTING_KEY);
-        } catch (Exception e) {
-            log.error("Ошибка при отправке сообщения об обновлении контрагента с ID {} в RabbitMQ", 
-                contractorDto.getId(), e);
-        }
-    }
-
-    /**
-     * Отправляет общее сообщение об изменении контрагента с автоматическим определением routing key.
-     *
-     * @param contractorDto DTO контрагента для отправки
-     * @param isNew true если контрагент новый, false если обновляется существующий
-     */
-    public void sendContractorUpdate(ContractorDto contractorDto, boolean isNew) {
-        if (isNew) {
-            sendContractorCreated(contractorDto);
-        } else {
-            sendContractorUpdated(contractorDto);
-        }
-    }
-
-    /**
-     * Отправляет сообщение об изменении контрагента (устаревший метод для совместимости).
-     * По умолчанию считает, что это обновление существующего контрагента.
-     *
-     * @param contractorDto DTO контрагента для отправки
-     */
-    public void sendContractorUpdate(ContractorDto contractorDto) {
-        sendContractorUpdated(contractorDto);
-    }
 }

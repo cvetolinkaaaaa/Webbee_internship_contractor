@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
 import org.springframework.data.relational.core.mapping.Table;
 
 /**
@@ -49,6 +50,9 @@ public class Contractor {
     private String modifyUserId;
     /** Признак активности (true — активен, false — удалён). */
     private Boolean isActive;
+    /** Версия для оптимистичной блокировки и упорядочивания событий */
+    @Version
+    private Long version;
 
     public Boolean getIsActive() {
         return isActive;

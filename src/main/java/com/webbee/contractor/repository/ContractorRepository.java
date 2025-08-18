@@ -73,7 +73,7 @@ public class ContractorRepository {
     /**
      * Сохраняет нового или обновляет существующего контрагента.
      */
-    public void save(Contractor contractor) {
+    public Contractor save(Contractor contractor) {
         if (!findById(contractor.getId()).isEmpty()) {
             Map<String, Object> params = new HashMap<>();
             params.put("parentId", contractor.getParentId());
@@ -109,6 +109,9 @@ public class ContractorRepository {
             params.put("id", contractor.getId());
             namedParameterJdbcTemplate.update(INSERT, params);
         }
+        return findById(contractor.getId()).orElseThrow(
+                () -> new RuntimeException("Failed to save contractor with id: " + contractor.getId())
+        );
     }
 
     /**

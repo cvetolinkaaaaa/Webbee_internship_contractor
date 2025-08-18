@@ -52,8 +52,14 @@ public class ContractorService {
     public void save(ContractorDto contractorDto) {
         boolean isNewContractor = Objects.isNull(getById(contractorDto.getId()));
         Contractor contractor = contractorMapper.contractorDtoToContractor(contractorDto);
-        contractorRepository.save(contractor);
-        contractorMessageService.sendContractorUpdate(contractorDto, isNewContractor);
+
+        Contractor savedContractor = contractorRepository.save(contractor);
+
+        contractorMessageService.sendContractorUpdate(
+                contractorMapper.contractorToContractorDto(savedContractor),
+                isNewContractor,
+                savedContractor.getVersion()
+        );
     }
 
     /**

@@ -26,6 +26,7 @@ public class ContractorService {
     private final ContractorMapper contractorMapper;
     private final AuthorizationService authorizationService;
     private final UserIdService userIdService;
+    private final ContractorMessageService contractorMessageService;
 
     /**
      * Возвращает список всех контрагентов.
@@ -49,8 +50,16 @@ public class ContractorService {
      * Создаёт нового или обновляет существующего контрагента.
      */
     public void save(ContractorDto contractorDto) {
+        boolean isNewContractor = Objects.isNull(getById(contractorDto.getId()));
         Contractor contractor = contractorMapper.contractorDtoToContractor(contractorDto);
-        contractorRepository.save(contractor);
+
+        Contractor savedContractor = contractorRepository.save(contractor);
+
+        contractorMessageService.sendContractorUpdate(
+                contractorMapper.contractorToContractorDto(savedContractor),
+                isNewContractor,
+                savedContractor.getVersion()
+        );
     }
 
     /**

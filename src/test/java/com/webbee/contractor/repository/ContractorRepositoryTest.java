@@ -38,26 +38,28 @@ class ContractorRepositoryTest {
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
 
         namedParameterJdbcTemplate.getJdbcTemplate().execute("""
-            CREATE TABLE contractor (
-                id VARCHAR(12) PRIMARY KEY,
-                parent_id VARCHAR(12),
-                name TEXT NOT NULL,
-                name_full TEXT,
-                inn TEXT,
-                ogrn TEXT,
-                country TEXT,
-                industry INT,
-                org_form INT,
-                create_date TIMESTAMP,
-                modify_date TIMESTAMP,
-                create_user_id TEXT,
-                modify_user_id TEXT,
-                is_active BOOLEAN NOT NULL DEFAULT TRUE
-            )
-        """);
+        CREATE TABLE contractor (
+            id VARCHAR(12) PRIMARY KEY,
+            parent_id VARCHAR(12),
+            name TEXT NOT NULL,
+            name_full TEXT,
+            inn TEXT,
+            ogrn TEXT,
+            country TEXT,
+            industry INT,
+            org_form INT,
+            create_date TIMESTAMP,
+            modify_date TIMESTAMP,
+            create_user_id TEXT,
+            modify_user_id TEXT,
+            is_active BOOLEAN NOT NULL DEFAULT TRUE,
+            version BIGINT DEFAULT 0
+        )
+    """);
 
         contractorRepository = new ContractorRepository(namedParameterJdbcTemplate);
     }
+
 
     @Test
     @DisplayName("save() and findById() сохраняет и возвращает контрагента")

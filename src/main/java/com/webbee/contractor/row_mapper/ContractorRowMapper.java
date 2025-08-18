@@ -25,6 +25,7 @@ public class ContractorRowMapper implements RowMapper<Contractor> {
         contractor.setCreateUserId(rs.getString("create_user_id"));
         contractor.setModifyUserId(rs.getString("modify_user_id"));
         contractor.setIsActive(rs.getBoolean("is_active"));
+        contractor.setVersion(rs.getLong("version"));
         return contractor;
     }
 
